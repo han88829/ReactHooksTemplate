@@ -1,4 +1,3 @@
-import { action } from "easy-peasy";
 import home from "./home/model";
 
 const stroe = {

@@ -10,12 +10,11 @@ const store = {
 
         /*  state 为Proxy  直接修改state中的字段值即可 
         *   获取data [...state.data]
+        *
         *   let target = {}
         *   let handlers = {} // do nothing
         *   let proxy = new Proxy(target, handlers)
-        *
         *   proxy.a = 123
-        *
         *   console.log(target.a) // 123
         */
 

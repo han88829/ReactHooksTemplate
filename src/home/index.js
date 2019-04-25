@@ -6,7 +6,14 @@ function App() {
     const value = useStore(state => state.home.value);
     const onChangeValue = useActions(actions => actions.home.onChangeValue);
     const onChangeData = useActions(actions => actions.home.onChangeData);
+    useEffect(() => {
+        console.log('页面加载！');
+        return () => {
+            console.log('页面卸载！');
+        }
 
+        // 第二个参数表示data发生变化才会更新ui
+    }, data);
     return (
         <>
             <input
