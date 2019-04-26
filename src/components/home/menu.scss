@@ -1,0 +1,43 @@
+  .home {
+      .menu-logo {
+          height: 32px;
+          background: rgba(255, 255, 255, .2);
+          margin: 16px;
+      }
+
+      .trigger {
+          font-size: 18px;
+          line-height: 64px;
+          padding: 0 24px;
+          cursor: pointer;
+          transition: color .3s;
+      }
+
+      .trigger:hover {
+          color: #1890ff;
+      }
+
+      .menu-iconImg {
+          height: 14px;
+          width: 14px;
+          min-width: 14px;
+          margin-right: 10px;
+          transition: font-size 0.15s cubic-bezier(0.215, 0.61, 0.355, 1), margin 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+      }
+  }
+
+  .ant-menu-item img {
+      height: 14px;
+      width: 14px;
+      min-width: 14px;
+      margin-right: 10px;
+      transition: font-size 0.15s cubic-bezier(0.215, 0.61, 0.355, 1), margin 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+  }
+
+  .ant-menu-submenu-title img {
+      height: 14px;
+      width: 14px;
+      min-width: 14px;
+      margin-right: 10px;
+      transition: font-size 0.15s cubic-bezier(0.215, 0.61, 0.355, 1), margin 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+  }

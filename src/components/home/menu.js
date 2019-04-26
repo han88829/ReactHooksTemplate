@@ -1,64 +1,71 @@
-import React, { useState } from "react";
-import { Layout, Menu, Breadcrumb, Icon, } from 'antd';
+import React, { useEffect } from "react";
+import { Layout, Menu, Icon, } from 'antd';
+import { useStore, useActions } from 'easy-peasy';
+import routeData from "../../config/router.config";
+import './menu.scss';
 
-const { Header, Content, Footer, Sider, } = Layout;
+const { Sider, } = Layout;
 const SubMenu = Menu.SubMenu;
 
 export default () => {
-    const [collapsed, setCollapsed] = useState(false);
+
+    useEffect(() => {
+        // console.log(routeData);
+    });
+
+    const state = useStore(state => state.home);
+    const actions = useActions(actions => actions.home);
+    const { collapsed, selectedKeys, openKeys } = state;
+    const { setCollapsed, onOpenKeys, onSelectedKeys } = actions;
+
+    const getMenu = (data = [], key = 1) => {
+        const html = data.map((item, index) => {
+            if ((item.childrens || []).some(child => !child.noMenuRequired) && !item.noMenuRequired) {
+                return (
+                    <SubMenu
+                        key={item.name}
+                        title={<span>
+                            {item.icon ? <Icon type={item.icon} /> : <img src={item.iconImg} alt="" className="menu-iconImg" />}
+                            <span style={{ opacity: collapsed && key === 1 && 0 }} >{item.name}</span>
+                        </span>
+                        }
+                    >
+                        {getMenu(item.childrens, ++key)}
+                    </SubMenu>
+                )
+            } else if (!item.noMenuRequired) {
+                return (
+                    <Menu.Item key={item.name} title={item.name}>
+                        {item.icon ? <Icon type={item.icon} /> : <img src={item.iconImg} alt="" className="menu-iconImg" />}
+                        <span style={{ opacity: collapsed && key === 1 && 0 }} >{item.name}</span>
+                    </Menu.Item >
+                )
+            }
+        });
+        return html
+    }
     return (
-        <Layout style={{ minHeight: '100vh' }}>
-            <Sider
-                collapsible
-                collapsed={collapsed}
-                onCollapse={setCollapsed}
+        <Sider
+            collapsible
+            collapsed={collapsed}
+            onCollapse={v => setCollapsed(v)}
+        >
+            <div className="menu-logo" />
+            <Menu
+                theme="dark"
+                selectedKeys={selectedKeys || []}
+                openKeys={openKeys || []}
+                mode="inline"
+                onClick={(item, key, keyPat) => {
+                    onSelectedKeys([item.key]);
+                }}
+                onSelect={(item, key) => {
+                    onSelectedKeys(item.selectedKeys);
+                }}
+                onOpenChange={onOpenKeys}
             >
-                <div className="logo" />
-                <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
-                    <Menu.Item key="1">
-                        <Icon type="pie-chart" />
-                        <span>Option 1</span>
-                    </Menu.Item>
-                    <Menu.Item key="2">
-                        <Icon type="desktop" />
-                        <span>Option 2</span>
-                    </Menu.Item>
-                    <SubMenu
-                        key="sub1"
-                        title={<span><Icon type="user" /><span>User</span></span>}
-                    >
-                        <Menu.Item key="3">Tom</Menu.Item>
-                        <Menu.Item key="4">Bill</Menu.Item>
-                        <Menu.Item key="5">Alex</Menu.Item>
-                    </SubMenu>
-                    <SubMenu
-                        key="sub2"
-                        title={<span><Icon type="team" /><span>Team</span></span>}
-                    >
-                        <Menu.Item key="6">Team 1</Menu.Item>
-                        <Menu.Item key="8">Team 2</Menu.Item>
-                    </SubMenu>
-                    <Menu.Item key="9">
-                        <Icon type="file" />
-                        <span>File</span>
-                    </Menu.Item>
-                </Menu>
-            </Sider>
-            <Layout>
-                <Header style={{ background: '#fff', padding: 0 }} />
-                <Content style={{ margin: '0 16px' }}>
-                    <Breadcrumb style={{ margin: '16px 0' }}>
-                        <Breadcrumb.Item>User</Breadcrumb.Item>
-                        <Breadcrumb.Item>Bill</Breadcrumb.Item>
-                    </Breadcrumb>
-                    <div style={{ padding: 24, background: '#fff', minHeight: 360 }}>
-                        Bill is a cat.
-            </div>
-                </Content>
-                <Footer style={{ textAlign: 'center' }}>
-                    Ant Design ©2018 Created by Ant UED
-          </Footer>
-            </Layout>
-        </Layout>
+                {getMenu(routeData, 1)}
+            </Menu>
+        </Sider>
     )
 }
