@@ -1,4 +1,4 @@
-import home from "./home/model";
+import home from "./components/home/model";
 
 const stroe = {
     home,
