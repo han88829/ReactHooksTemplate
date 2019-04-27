@@ -11,7 +11,7 @@ const getAllKeys = (data = [], key, name = "") => {
         } else if (item.childrens && item.name !== key) {
             const returnKey = getAllKeys(item.childrens || [], key, name);
             if (returnKey && returnKey.length > 0) {
-                keys = [name ? [item[name]] : [item], ...returnKey];
+                keys = [name ? [item[name]] : item, ...returnKey];
             }
         }
     });
@@ -25,17 +25,20 @@ const getAllKeys = (data = [], key, name = "") => {
 */
 const getCustomData = (data = [], name = "", value = "", key = "") => {
     let keys = [];
-    let path = '';
-    if (key === 'path') {
+    let path = value;
+
+    // 如果路由存在参数，则去除数字进行匹配
+    if (key === 'path' && value.replace(/[^\d]/g, '').toString()) {
         path = value.split('/').splice(value.split('/').length - 1, 1).join('/');
     }
+
     data.forEach(item => {
         if (item[name] === value || (item[name].includes(path) && key === 'path')) {
             keys = key ? [item[key]] : [item];
-        } else if (item.childrens && item.name !== key) {
-            const returnKey = getAllKeys(item.childrens || [], name, value, key);
+        } else if (item.childrens && item[name] !== value) {
+            const returnKey = getCustomData(item.childrens || [], name, value, key);
             if (returnKey && returnKey.length > 0) {
-                keys = [key ? [item[key]] : [item], ...returnKey];
+                keys = [key ? [item[key]] : item, ...returnKey];
             }
         }
     });

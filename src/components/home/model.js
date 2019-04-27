@@ -21,15 +21,15 @@ const store = {
     }),
     onPush: action((state, { props, key }) => {
         const data = getAllKeys(routeData, key) || [];
-        const item = data[data.length - 1];
-        const breadcrumb = data.map(item => ({ name: item.name, path: item.path }));
+        const item = data[data.length - 1] || {};
+        const breadcrumb = data.map(x => ({ name: x.name, path: x.path }));
         props.history.push(item.path);
         state.breadcrumb = breadcrumb;
     }),
     initBreadcrumb: action((state, { url, number }) => {
         const data = getCustomData(routeData, 'path', url);
         state.breadcrumb = data.map(item => ({ name: item.name, path: item.path }));
-        state.selectedKeys = [data[data.length - 1].name];
+        state.selectedKeys = [(data[data.length - 1] || {}).name];
         state.openKeys = data.map(item => item.name);
     })
 }

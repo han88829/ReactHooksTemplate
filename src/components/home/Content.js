@@ -9,8 +9,9 @@ const { Content } = Layout;
 
 export default () => {
     const data = useStore(state => state.home.breadcrumb) || [];
+    console.log(data);
     return (
-        <Content style={{ margin: '0 16px',marginBottom:16 }}>
+        <Content style={{ margin: '0 16px', marginBottom: 16 }}>
             <Breadcrumb style={{ margin: '16px 0' }}>
                 {data.map(item => {
                     return <Breadcrumb.Item key={item.name}>{item.name}</Breadcrumb.Item>
