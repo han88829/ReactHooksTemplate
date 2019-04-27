@@ -13,7 +13,7 @@ function App() {
         }
 
         // 第二个参数表示data发生变化才会更新ui
-    }, data);
+    }, []);
     return (
         <>
             <input

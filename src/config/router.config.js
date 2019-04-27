@@ -10,9 +10,12 @@
     noMenuRequired : default false   不显示菜单请设置 : true
 */
 
+// 用户
 import User from "../components/user";
 import UserDetail from "../components/user/detail";
 
+// 测试demo
+import demo from "../components/demo";
 
 import userImg from '../assets/user/user.png';
 
@@ -34,5 +37,11 @@ export default [
                 iconImg: userImg,
             }
         ],
-    },
+    }, {
+        path: '/demo',
+        component: demo,
+        name: "测试",
+        icon: "exception",
+        iconImg: "",
+    }
 ];

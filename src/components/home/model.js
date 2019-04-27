@@ -1,21 +1,6 @@
 import { action } from 'easy-peasy';
 import routeData from "../../config/router.config";
-
-const getAllKeys = (data = [], key) => {
-    let keys = [];
-    data.forEach(item => {
-        if (item.name === key) {
-            keys = [item.name];
-
-        } else if (item.childrens && item.name !== key) {
-            const returnKey = getAllKeys(item.childrens || [], key);
-            if (returnKey && returnKey.length > 0) {
-                keys = [item.name, ...returnKey];
-            }
-        }
-    });
-    return keys;
-}
+import getAllKeys from "../../method/getAllKeys";
 
 const store = {
     collapsed: false,
@@ -26,13 +11,14 @@ const store = {
     onOpenKeys: action((state, openKeys) => {
         try {
             const latestOpenKey = openKeys[openKeys.length - 1];
-            state.openKeys = getAllKeys([...routeData], latestOpenKey);
+            state.openKeys = getAllKeys([...routeData], latestOpenKey, 'name');
         } catch (error) {
             console.log(error);
         }
-
     }),
-    onSelectedKeys: action((state, selectedKeys) => ({ ...state, selectedKeys })),
+    onSelectedKeys: action((state, selectedKeys) => {
+        return ({ ...state, selectedKeys })
+    }),
 }
 
 export default store;
