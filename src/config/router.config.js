@@ -7,7 +7,7 @@
     name:       名称
     childrens : 子页面配置信息
     authority :  权限
-    noMenuRequired : default false   不显示菜单请设置 : true
+    noMenuRequired : default false   不在菜单中显示请设置 : true
 */
 
 // 用户
