@@ -1,8 +1,6 @@
-import onPush from "./onPush";
-import getAllKeys from "./getAllKeys";
-
+import getAllKeys, { getCustomData } from "./getAllKeys";
 
 export {
-    onPush,
-    getAllKeys
+    getAllKeys,
+    getCustomData
 }

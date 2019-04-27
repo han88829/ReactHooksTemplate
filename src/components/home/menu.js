@@ -2,17 +2,12 @@ import React, { useEffect } from "react";
 import { Layout, Menu, Icon, } from 'antd';
 import { useStore, useActions } from 'easy-peasy';
 import routeData from "../../config/router.config";
-import { onPush } from "../../method";
 import './menu.scss';
 
 const { Sider, } = Layout;
 const SubMenu = Menu.SubMenu;
 
 export default (props) => {
-
-    useEffect(() => {
-        // console.log(routeData);
-    });
 
     const getMenu = (data = [], key = 1) => {
         const html = data.map((item, index) => {
@@ -44,7 +39,7 @@ export default (props) => {
     const state = useStore(state => state.home);
     const actions = useActions(actions => actions.home);
     const { collapsed, selectedKeys, openKeys } = state;
-    const { setCollapsed, onOpenKeys, onSelectedKeys } = actions;
+    const { setCollapsed, onOpenKeys, onSelectedKeys, onPush } = actions;
     return (
         <Sider
             collapsible
@@ -62,7 +57,10 @@ export default (props) => {
                 }}
                 onSelect={(item, key) => {
                     onSelectedKeys(item.selectedKeys);
-                    onPush(props, item.key);
+                    onPush({
+                        props,
+                        key: item.key
+                    });
                 }}
                 onOpenChange={onOpenKeys}
             >
