@@ -8,9 +8,10 @@ const { Sider, } = Layout;
 const SubMenu = Menu.SubMenu;
 
 export default (props) => {
-
+    const user =JSON.parse(sessionStorage.getItem('user') ||"{}");
     const getMenu = (data = [], key = 1) => {
         const html = data.map((item, index) => {
+            if(item.authority && !item.authority.includes(user.name))return ;
             if ((item.childrens || []).some(child => !child.noMenuRequired) && !item.noMenuRequired) {
                 return (
                     <SubMenu

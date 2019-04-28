@@ -11,7 +11,7 @@ export default (props) => {
     useEffect(() => {
         const url = window.location.pathname;
         const number = url.replace(/[^\d]/g, '');
-        initBreadcrumb({ url, number })
+        initBreadcrumb({ url, number }); 
     }, []);
     return (
         <Layout style={{ minHeight: '100vh' }} className="home">

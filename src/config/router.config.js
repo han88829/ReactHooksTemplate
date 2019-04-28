@@ -24,7 +24,7 @@ export default [
         path: '/user',
         component: User,
         name: "用户",
-        icon: "",
+        icon: "", 
         iconImg: userImg,
         childrens: [
             {
