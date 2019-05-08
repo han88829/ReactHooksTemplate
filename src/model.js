@@ -1,5 +1,5 @@
-import home from "./components/home/model";
-import demo from "./components/demo/model";
+import home from "@pages/home/model";
+import demo from "@pages/demo/model";
 
 const stroe = {
     home,

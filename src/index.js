@@ -6,6 +6,7 @@ import { StoreProvider, createStore } from 'easy-peasy';
 import model from './model';
 import * as serviceWorker from './serviceWorker';
 
+
 const store = createStore(model)
 
 ReactDOM.render(
