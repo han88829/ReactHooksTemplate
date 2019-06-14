@@ -12,7 +12,7 @@ function App() {
         <Route path="/"   component={home} />
 
             {/*  重定向路由 */}
-            <Redirect from="/" to={user.name?'/user':'/logon'} />
+            <Redirect from="/" to={user.name?'/':'/logon'} />
       </Switch>
     </Router>
   );

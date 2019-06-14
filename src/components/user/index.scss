@@ -1,0 +1,28 @@
+.header-user {
+    width: calc(100% - 66px);
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    box-sizing: border-box;
+
+    .userInfo {
+        cursor: pointer;
+        padding: 0 20px;
+
+
+        .user-img {
+            display: inline-block;
+            height: 100%;
+            margin-right: 5px;
+
+            img {
+                height: 17px;
+                width: 17px;
+            }
+        }
+    }
+
+    .ant-dropdown-open {
+        background: rgba(0, 0, 0, 0.1);
+    }
+}

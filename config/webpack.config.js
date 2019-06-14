@@ -276,6 +276,7 @@ module.exports = function (webpackEnv) {
         //配置自定义函数别名
         "@method": path.resolve("src/method"),
         "@pages": path.resolve("src/components"),
+        "@assets": path.resolve("src/assets"),
       },
       plugins: [
         // Adds support for installing with Plug'n'Play, leading to faster installs and adding

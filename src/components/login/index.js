@@ -266,7 +266,7 @@ class App extends Component {
         name: data.name
       }; 
       sessionStorage.setItem('user',JSON.stringify(data));     
-      this.props.history.push('/user')
+      this.props.history.push('/')
     }
   };
 

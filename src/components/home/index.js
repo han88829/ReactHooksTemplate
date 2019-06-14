@@ -17,7 +17,7 @@ export default (props) => {
         <Layout style={{ minHeight: '100vh' }} className="home">
             <Menu  {...props} />
             <Layout>
-                <Header />
+                <Header {...props} />
                 <Content />
             </Layout>
         </Layout>

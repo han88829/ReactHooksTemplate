@@ -24,14 +24,15 @@ export default [
         path: '/user',
         component: User,
         name: "用户",
-        icon: "", 
+        icon: "",
         iconImg: userImg,
+        noMenuRequired: true,
         childrens: [
             {
                 path: '/user/detail',
                 component: UserDetail,
                 authority: ['admin'],
-                name: "用户详情",
+                name: "个人中心",
                 noMenuRequired: true,
                 icon: "",
                 iconImg: userImg,
